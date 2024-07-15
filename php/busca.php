@@ -140,7 +140,7 @@ include('config.php');
             $sqlBuscaPesquisa = "SELECT * FROM cao WHERE NOME LIKE '%$contBusca%'AND sts = 'Disponivel para Adoção'  OR RACA LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR SEXO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PELO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PORTE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR IDADE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção'";
             $resultadoPesquisa = $conexao->query($sqlBuscaPesquisa);
             $resultadosPesquisa = $resultadoPesquisa->num_rows;
-            if($resultadosPesquisa > 1){  
+            if($resultadosPesquisa > 0){  
                 for ($i = 0; $i < $resultadosPesquisa; $i++) {
                     while($user_data = mysqli_fetch_assoc($resultadoPesquisa)){
                         $id = $user_data['ID'];
