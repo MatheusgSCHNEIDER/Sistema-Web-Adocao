@@ -11,3 +11,5 @@ Principais funcionalidades do sistema:
 -Formulário de Adoção: Ao clicar no botão "Quero Adotar" em cada cadastro de animal, o usuário é direcionado a um formulário onde preenche suas informações pessoais. O ID do animal é preenchido automaticamente, e o formulário é enviado diretamente para o e-mail do administrador.
 
 O backup do banco está no arquivo site_adocao.sql, nele contém um usuário criado para aceso das telas restritas. Usuário: admin Senha:info345
+
+video de apresentação disponível em: https://youtu.be/e2piP-N8JYE?si=br54-jM9PTKpyxPu
