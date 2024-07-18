@@ -125,10 +125,10 @@ select{
             </script>
             <br><br>
             <!-- <label>Escolha a Foto do Animal:</label>
-            <input type="file" name="img" id="img" accept="image/*"value="<?php echo $img; ?>">
+            <input type="file" name="img" id="img" accept="image/*"value="<?php echo $img; ?>"> receber imagem da alteração comentado pois não esta funcional-->
             <div class="botao">
                 <input type="submit" name='update' id="update">
-            </div> -->
+            </div> 
             
         </fieldset>
     </form>
