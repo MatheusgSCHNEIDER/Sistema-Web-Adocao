@@ -1,4 +1,8 @@
 <?php
+session_start();
+if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true)){
+    header('Location: login.php');
+}
 
 if (!empty($_GET['id'])){
     $id = $_GET['id'];
@@ -16,15 +20,15 @@ if (!empty($_GET['id'])){
             $porte = $user_data['PORTE'];
             $idade = $user_data['IDADE'];
             $sts = $user_data['sts'];
-            $img = $user_data['foto'];
-        }
-       
+            $imgNome = $user_data['nome_img'];
+            $imgData = $user_data['foto'];
+            
+    }
     }
     else{
         echo 'cadastro não encontrado';
         header('Location: listagem.php');
-    }
-    
+    } 
 }
 
 ?>
@@ -79,7 +83,7 @@ select{
         </ul>
     <div class= 'form'>
     <h2>Alterar Cadastro:</h2>
-    <form action="update.php" method="POST">
+    <form action="update.php" method="POST" enctype="multipart/form-data">
         <fieldset>
             <input type="hidden" name="id" value="<?php echo $id;?>">  
             <input type="text" placeholder="Nome Animal" name="nome" id="nome" value="<?php echo $nome;?>">   
@@ -124,9 +128,10 @@ select{
                 document.getElementById('sts').value = "<?php echo $sts; ?>"; //seleciona o valor conforme variavel
             </script>
             <br><br>
-            <!-- <label>Escolha a Foto do Animal:</label>
-            <input type="file" name="img" id="img" accept="image/*"value="<?php echo $img; ?>"> receber imagem da alteração comentado pois não esta funcional-->
+            <label>Selecione novamente a imagem em caso de alteração:</label>
+            <input type="file" name="img" id="img" accept="image/*">
             <div class="botao">
+                <br><br>
                 <input type="submit" name='update' id="update">
             </div> 
             

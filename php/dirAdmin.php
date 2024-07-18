@@ -1,8 +1,10 @@
 <?php
-    
-    if(! isset ($_SESSION)){
-        session_start();
+session_start();
+    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true)){
+        header('Location: login.php');
     }
+    
+    
 ?> 
 
 <!DOCTYPE html>

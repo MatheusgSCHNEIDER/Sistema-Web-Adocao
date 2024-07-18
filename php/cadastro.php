@@ -9,6 +9,10 @@
 //     print_r($_POST['img']);
 
 // }
+session_start();
+    if((!isset($_SESSION['nome']) == true) && (!isset($_SESSION['senha']) == true)){
+        header('Location: login.php');
+    }
 include_once('config.php');
 if (isset($_POST['submit'])){
     $nome = $_POST['nome'];
@@ -22,10 +26,11 @@ if (isset($_POST['submit'])){
     if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
         $file = $_FILES['img']['tmp_name'];
         $imgData = addslashes(file_get_contents($file)); // Lê os dados binários da imagem
-
+        $nomeImg = $_FILES['img']['name'];
         // Insere os dados binários no campo BLOB
-        $result = mysqli_query($conexao, "INSERT INTO cao (NOME, RACA, SEXO, PELO, PORTE, IDADE, sts, foto) 
-        VALUES ('$nome', '$raca', '$sexo', '$pelo', '$porte', '$idade', '$sts', '$imgData')");
+        $result = mysqli_query($conexao, "INSERT INTO cao (NOME, RACA, SEXO, PELO, PORTE, IDADE, sts, foto, nome_img) 
+        VALUES ('$nome', '$raca', '$sexo', '$pelo', '$porte', '$idade', '$sts', '$imgData', '$nomeImg')");
+        
 }
 }
 ?>

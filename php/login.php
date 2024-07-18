@@ -18,11 +18,10 @@ if(isset($_POST['user']) || isset($_POST['senha'])){
             $usuario = $sql_query->fetch_assoc();
             if(! isset ($_SESSION)){
                 session_start();
+                $_SESSION['nome'] = $usuario;
+                $_SESSION['senha'] = $password;
+                header('Location: dirAdmin.php');
             }
-            $_SESSION ['id'] = $usuario ['id'];
-            $_SESSION ['usuario'] = $usuario ['nome'];
-
-            header('Location: dirAdmin.php');
         }
         else{
             echo "Usuário ou senha incorreto!!";

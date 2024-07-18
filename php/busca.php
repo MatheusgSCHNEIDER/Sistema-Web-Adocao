@@ -193,7 +193,7 @@ include('config.php');
             }
             else{
                 echo 'Nenhum resultado encontrado';
-            }
+        }
         }
             ?>
 </body>

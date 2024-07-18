@@ -8,13 +8,16 @@ if(isset($_POST['update'])){
     $porte = $_POST['porte'];
     $idade = $_POST['idade'];
     $sts = $_POST['sts'];
-    $img = $_POST['foto'];
     $id = $_POST['id'];
+    if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+        $file = $_FILES['img']['tmp_name'];
+        $imgData = addslashes(file_get_contents($file));
+        $nomeImg = $_FILES['img']['name'];
+    }
 
-    $sqlUpdate = "UPDATE cao set NOME='$nome',RACA='$raca',SEXO='$sexo',PELO='$pelo',PORTE='$porte',IDADE='$idade',sts='$sts',foto='$img'
+    $sqlUpdate = "UPDATE cao set NOME='$nome',RACA='$raca',SEXO='$sexo',PELO='$pelo',PORTE='$porte',IDADE='$idade',sts='$sts',foto='$imgData', nome_img='$nomeImg'
     WHERE ID= '$id'";
     $resultadoUpdate = $conexao->query($sqlUpdate);
-    echo $sqlUpdate;
 }
 header('Location: listagem.php');
 
