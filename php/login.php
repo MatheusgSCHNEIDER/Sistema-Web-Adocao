@@ -25,6 +25,7 @@ if(isset($_POST['user']) || isset($_POST['senha'])){
         }
         else{
             echo "Usuário ou senha incorreto!!";
+            ('Location: login.php');
         }
     }
 
@@ -69,6 +70,11 @@ if(isset($_POST['user']) || isset($_POST['senha'])){
             cursor: pointer;
             border-color: rgb(199, 199, 5);
         }
+        .error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
     </style>
 </head>
 <body>

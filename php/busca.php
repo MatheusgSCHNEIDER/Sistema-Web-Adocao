@@ -31,6 +31,7 @@ include('config.php');
     }
     .vitrine input{
         color: black;
+        text-align: right;
     }
     .dados{
     margin-top: 15px;
@@ -39,7 +40,14 @@ include('config.php');
     border-radius: 10px;
     width: 300px;
     color: white;
-    margin-left: 360px;
+    position: absolute;
+    left: 30%;
+    
+    }
+    .dados input {
+    text-align: center;
+    border-radius: 10px;
+    background-color: whitesmoke;   
     }
     #imagem{
     margin-top: 15px;
@@ -48,14 +56,22 @@ include('config.php');
     border-radius: 10px;
     width: 400px;
     color: white;
+    margin-left: 95%;
+    
     }
     #imagem img{
         width: 370px;
         height: 400px;
+        border-radius: 10px;   
+    }
+    #imagem label{
+        width: 100%;
+        text-align: center;
     }
     #mail{
         width: 100%;
         background-image: linear-gradient(45deg, green, rgb(199, 199, 5))
+        
     }
     
     </style>
@@ -122,7 +138,7 @@ include('config.php');
                     <input type="submit" name='mail' id="mail" value="Quero Adotar">
                 </div>
                 <div class="imagem" id="imagem">
-                    <label>Foto do Animal:</label>
+                    <label>Olá! eu sou <?php echo $nome;?> </label>
                     <img <?php echo '<img src="data:image/jpeg;base64,' . $imgBase64 . '" alt="Foto do Animal">'; ?>
                 </div>  
                 </div>
@@ -182,7 +198,7 @@ include('config.php');
                     <input type="submit" name='mail' id="mail" value="Quero Adotar">
                 </div>
                 <div class="imagem" id="imagem">
-                    <label>Foto do Animal:</label>
+                    <label>Olá! eu sou <?php echo $nome;?></label>
                     <img <?php echo '<img src="data:image/jpeg;base64,' . $imgBase64 . '" alt="Foto do Animal">'; ?>
                 </div>  
                 </div>

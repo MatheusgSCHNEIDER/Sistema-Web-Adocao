@@ -1,8 +1,13 @@
 <?php
+include_once('config.php');
 if (!empty($_GET['id'])){
     $id = $_GET['id'];
-    include_once('config.php');
+    $sql_code = "SELECT NOME FROM cao WHERE id = '$id'";
+    $sql_query = $conexao->query($sql_code) or die('falha na execucao:'. $mysqli->error);
+    $nome = $sql_query->fetch_assoc(); 
+    $string = implode(";", $nome); 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +31,17 @@ if (!empty($_GET['id'])){
 }
 .envio input{
     width: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 .envio [type=text]{
 height: 20px;
-    }
+text-align: center;
+background-color: whitesmoke;
+}
 .envio [type=email]{
 height: 20px;
+text-align: center;
+background-color: whitesmoke;
 }      
 .envio [type=submit]{
 width: 102%;
@@ -67,10 +76,10 @@ background-image: linear-gradient(45deg, green, rgb(199, 199, 5));
             <input type="text" name="fone" id="fone" required>
             <br></br>
             <label for="animal">Nome do Animal:</label>
-            <input type="text" name="animal" id="animal" required>
+            <input type="text" name="animal" id="animal" disabled='' value="<?php echo $string;?>">
             <br></br>
             <label for="animal">Numero de Identificação do Animal:</label>
-            <input type="text" name="id" id="id" value="<?php echo $id; ?>">  
+            <input type="text" name="id" id="id" disabled='' value="<?php echo $id; ?>">  
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="http://localhost/siteAdocao/obrigado.html"> 
             <br></br>

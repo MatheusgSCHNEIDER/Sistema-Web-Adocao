@@ -58,7 +58,7 @@ select{
     font-size: 15px;
     border-radius: 10px;
 }
-.botao input{
+.botao button{
     padding: 15px;
     border-radius: 10px;
     font-size: 20px;
@@ -67,6 +67,9 @@ select{
     background-color: green;
     cursor: pointer;
      }
+.botao button :hover {
+background-image: linear-gradient(45deg, green, rgb(199, 199, 5));
+}
 .form{
     background-color: rgba(0, 0, 0, 0.88);
     position: absolute;
@@ -122,7 +125,7 @@ select{
             <label>Escolha a Foto do Animal:</label>
             <input type="file" name="img" id="img" accept="image/*">
             <div class="botao">
-                <input type="submit" name='submit' id="submit">
+                <button type="submit" name='submit' id="submit">Gravar</button>
             </div>
             
         </fieldset>
