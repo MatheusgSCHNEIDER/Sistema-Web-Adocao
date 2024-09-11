@@ -15,23 +15,23 @@ include('config.php');
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(45deg, green, rgb(199, 199, 5));
         }
-        .voltar a{
-            color: black;   
-        }
+    .voltar a{
+    color: black;   
+    }
     #pesquisa{
-        width: 300px;
+    width: 300px;
     }
     #nav{
-        border-radius: 10px;
-        background-color: rgb(0, 0, 0, 0.4);
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.4);
     }
     .vitrine{
     display: grid;
     grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
     }
     .vitrine input{
-        color: black;
-        text-align: right;
+    color: black;
+    text-align: right;
     }
     .dados{
     margin-top: 15px;
@@ -60,18 +60,17 @@ include('config.php');
     
     }
     #imagem img{
-        width: 370px;
-        height: 400px;
-        border-radius: 10px;   
+    width: 370px;
+    height: 400px;
+    border-radius: 10px;   
     }
     #imagem label{
-        width: 100%;
-        text-align: center;
+    width: 100%;
+    text-align: center;
     }
     #mail{
-        width: 100%;
-        background-image: linear-gradient(45deg, green, rgb(199, 199, 5))
-        
+    width: 100%;
+    background-image: linear-gradient(45deg, green, rgb(199, 199, 5));    
     }
     
     </style>
@@ -109,6 +108,7 @@ include('config.php');
                     $sts = $user_data['sts'];
                     $img = $user_data['foto'];
                     $imgBase64 = base64_encode($img);
+                    usleep(300000);
                     ?> 
             <form action="formAdocao.php" enctype="multipart/form-data">
                 <div class="vitrine">
@@ -151,8 +151,7 @@ include('config.php');
          <!-- exibe somente os cadastros pesquisados -->
          <?php
         if (isset($_POST['pesquisa'])){
-            $contBusca = $_POST['pesquisa'];
-            
+            $contBusca = $_POST['pesquisa']; 
             $sqlBuscaPesquisa = "SELECT * FROM cao WHERE NOME LIKE '%$contBusca%'AND sts = 'Disponivel para Adoção'  OR RACA LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR SEXO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PELO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PORTE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR IDADE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção'";
             $resultadoPesquisa = $conexao->query($sqlBuscaPesquisa);
             $resultadosPesquisa = $resultadoPesquisa->num_rows;
@@ -168,7 +167,8 @@ include('config.php');
                         $idade = $user_data['IDADE'];
                         $sts = $user_data['sts'];
                         $img = $user_data['foto'];
-                        $imgBase64 = base64_encode($img);             
+                        $imgBase64 = base64_encode($img);
+                        usleep(300000);             
                     ?>
             <form action="formAdocao.php">
                 <div class="vitrine">

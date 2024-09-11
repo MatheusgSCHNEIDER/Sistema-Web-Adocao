@@ -1,34 +1,34 @@
 <?php
 include('config.php');
-if(isset($_POST['user']) || isset($_POST['senha'])){
-    if(strlen($_POST['user'] == 0)){
-        echo "Preencha seu usuário";
-    }
-    else if(strlen($_POST['senha'] == 0)){
-        echo "Preencha sua senha";
+
+$erromsg = "";
+
+if (isset($_POST['user']) || isset($_POST['senha'])) {
+    if (strlen($_POST['user']) == 0) {
+        $erromsg = "Preencha seu Usuário";
+    } elseif (strlen($_POST['senha']) == 0) {
+        $erromsg = "Preencha sua Senha";
     } else {
         $usuario = $conexao->real_escape_string($_POST['user']);
         $password = $conexao->real_escape_string($_POST['senha']);
 
-        $sql_code = "SELECT * FROM usuarios WHERE nome = '$usuario' and senha = '$password'";
-        $sql_query = $conexao->query($sql_code) or die('falha na execucao:'. $mysqli->error);
+        $sql_code = "SELECT * FROM usuarios WHERE nome = '$usuario' AND senha = '$password'";
+        $sql_query = $conexao->query($sql_code) or die('falha na execucao:'. $conexao->error);
         $quantidade = $sql_query->num_rows;
-        
-        if($quantidade == 1){
+
+        if ($quantidade == 1) {
             $usuario = $sql_query->fetch_assoc();
-            if(! isset ($_SESSION)){
+            if (!isset($_SESSION)) {
                 session_start();
-                $_SESSION['nome'] = $usuario;
-                $_SESSION['senha'] = $password;
-                header('Location: dirAdmin.php');
             }
-        }
-        else{
-            echo "Usuário ou senha incorreto!!";
-            ('Location: login.php');
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['senha'] = $password;
+            header('Location: dirAdmin.php');
+        } else {
+            $erromsg = "Usuário ou Senha Incorreto!!";
+            
         }
     }
-
 }
 ?>
 
@@ -70,19 +70,24 @@ if(isset($_POST['user']) || isset($_POST['senha'])){
             cursor: pointer;
             border-color: rgb(199, 199, 5);
         }
-        .error {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 10px;
+        .erro {
+        color: red;
+        align-items: center;
+        font-weight: bold;
+        
 }
     </style>
 </head>
 <body>
 <div id="menu-horizontal">
-            <ul>
-                <li><a href="../index.html">Voltar a Pagina Inicial</a></li>
-            </ul>
+    <ul>
+        <li><a href="../index.html">Voltar a Pagina Inicial</a></li>
+    </ul>
+    
     <div class="login">
+        <div class="erro">
+            <a><?php echo $erromsg?></a>
+        </div>
         <h1>Login</h1>
         <form action="" method="POST">
             <input type="text" placeholder="Usuario" name='user'>

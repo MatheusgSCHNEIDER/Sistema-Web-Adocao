@@ -83,10 +83,11 @@ background-image: linear-gradient(45deg, green, rgb(199, 199, 5));
 </style>
 <body>
 <div id="menu-horizontal">
-            <ul>
-                <li><a href="../index.html">Voltar a Pagina Inicial</a></li>
-                <li><a href="listagem.php">Alterar ou Excluir Cadastro Existente</a></li>
-            </ul>
+    <ul>
+        <li><a href="../index.html">Voltar a Pagina Inicial</a></li>
+        <li><a href="listagem.php">Alterar ou Excluir Cadastro Existente</a></li>
+        <li><a href="dirAdmin.php">Voltar ao Direcionamento</a></li>
+    </ul>
 <div class= 'form'>
     <h2>Cadastro de Animal</h2>
     <form action="cadastro.php" method="POST" enctype="multipart/form-data">
