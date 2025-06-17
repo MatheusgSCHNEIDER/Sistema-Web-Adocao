@@ -15,7 +15,7 @@ include('config.php');
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(45deg, green, rgb(199, 199, 5));
         }
-    .voltar a{
+        .voltar a{
     color: black;   
     }
     #pesquisa{
@@ -28,6 +28,8 @@ include('config.php');
     .vitrine{
     display: grid;
     grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+    column-gap: 50px;
+    
     }
     .vitrine input{
     color: black;
@@ -41,27 +43,28 @@ include('config.php');
     width: 300px;
     color: white;
     position: absolute;
-    left: 30%;
+    left: 22%;
     
     }
     .dados input {
     text-align: center;
     border-radius: 10px;
-    background-color: whitesmoke;   
+    background-color: whitesmoke;
+    margin-bottom: 15px;   
     }
     #imagem{
     margin-top: 15px;
     background-color: rgba(0, 0, 0, 0.88);
     padding: 15px;
     border-radius: 10px;
-    width: 400px;
+    width: 55%;
     color: white;
     margin-left: 95%;
     
     }
     #imagem img{
-    width: 370px;
-    height: 400px;
+    width: 100%;
+    height: 375px;
     border-radius: 10px;   
     }
     #imagem label{
@@ -112,35 +115,30 @@ include('config.php');
                     ?> 
             <form action="formAdocao.php" enctype="multipart/form-data">
                 <div class="vitrine">
-                <div class="dados">
-                    <label>Nome:</label>
-                    <input type="hidden" name="id" value="<?php echo $id;?>">  
-                    <input value="<?php echo $nome;?>" disabled=''>
-                    <br><br>  
-                    <label>Raça:</label>
-                    <input value="<?php echo $raca;?>" disabled=''>
-                    <br><br>  
-                    <label>Sexo:</label>
-                    <input value="<?php echo $sexo;?>" disabled=''>
-                    <br><br>
-                    <label>Pelo:</label>
-                    <input value="<?php echo $pelo;?>" disabled=''>
-                    <br><br>
-                    <label>Porte:</label>
-                    <input value="<?php echo $porte;?>" disabled=''>
-                    <br><br>
-                    <label>Idade:</label>
-                    <input value="<?php echo $idade;?>" disabled=''>
-                    <br><br>
-                    <label>Status:</label>
-                    <input value="<?php echo $sts;?>" disabled=''>
-                    <br><br>
-                    <input type="submit" name='mail' id="mail" value="Quero Adotar">
-                </div>
-                <div class="imagem" id="imagem">
-                    <label>Olá! eu sou <?php echo $nome;?> </label>
-                    <img <?php echo '<img src="data:image/jpeg;base64,' . $imgBase64 . '" alt="Foto do Animal">'; ?>
-                </div>  
+                    <div class="dados" id="dados">
+                        <label>Nome:</label>
+                        <input type="hidden" name="id" value="<?php echo $id;?>">  
+                        <input value="<?php echo $nome;?>" disabled=''>
+                        <label>Raça:</label>
+                        <input value="<?php echo $raca;?>" disabled=''>
+                        <label>Sexo:</label>
+                        <input value="<?php echo $sexo;?>" disabled=''>
+                        <label>Pelo:</label>
+                        <input value="<?php echo $pelo;?>" disabled=''>
+                        <label>Porte:</label>
+                        <input value="<?php echo $porte;?>" disabled=''>
+                        <label>Idade:</label>
+                        <input value="<?php echo $idade;?>" disabled=''>
+                        <label>Obs.:</label>
+                        <input value="Sim, sou Castrado" disabled=''>
+                        <label>Status:</label>
+                        <input value="<?php echo $sts;?>" disabled=''>
+                        <input type="submit" name='mail' id="mail" value="Quero Adotar">
+                    </div>
+                    <div class="imagem" id="imagem">
+                        <label>Olá! eu sou <?php echo $nome;?> </label>
+                        <img <?php echo '<img src="data:image/jpeg;base64,' . $imgBase64 . '" alt="Foto do Animal">'; ?>
+                    </div>  
                 </div>
             </form>
             <?php
@@ -150,7 +148,7 @@ include('config.php');
             ?>
          <!-- exibe somente os cadastros pesquisados -->
          <?php
-        if (isset($_POST['pesquisa'])){
+        if (!empty($_POST['pesquisa'])){
             $contBusca = $_POST['pesquisa']; 
             $sqlBuscaPesquisa = "SELECT * FROM cao WHERE NOME LIKE '%$contBusca%'AND sts = 'Disponivel para Adoção'  OR RACA LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR SEXO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PELO LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR PORTE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção' OR IDADE LIKE '%$contBusca%' AND sts = 'Disponivel para Adoção'";
             $resultadoPesquisa = $conexao->query($sqlBuscaPesquisa);
@@ -176,25 +174,20 @@ include('config.php');
                     <label>Nome:</label>
                     <input type="hidden" name="id" value="<?php echo $id;?>">  
                     <input value="<?php echo $nome;?>" disabled=''>
-                    <br><br>  
                     <label>Raça:</label>
                     <input value="<?php echo $raca;?>" disabled=''>
-                    <br><br>  
                     <label>Sexo:</label>
                     <input value="<?php echo $sexo;?>" disabled=''>
-                    <br><br>
                     <label>Pelo:</label>
                     <input value="<?php echo $pelo;?>" disabled=''>
-                    <br><br>
                     <label>Porte:</label>
                     <input value="<?php echo $porte;?>" disabled=''>
-                    <br><br>
                     <label>Idade:</label>
                     <input value="<?php echo $idade;?>" disabled=''>
-                    <br><br>
+                    <label>Obs.:</label>
+                    <input value="Sim, sou Castrado" disabled=''>
                     <label>Status:</label>
                     <input value="<?php echo $sts;?>" disabled=''>
-                    <br><br>
                     <input type="submit" name='mail' id="mail" value="Quero Adotar">
                 </div>
                 <div class="imagem" id="imagem">
